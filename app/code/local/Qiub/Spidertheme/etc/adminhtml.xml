@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- File: app/code/local/Qiub/Themeadmin/etc/adminhtml.xml -->
+<config>
+    <menu>
+        <qiub translate="title" module="qspidertheme">
+            <title>SpiderTheme</title>
+            <sort_order>75</sort_order>
+            <!--children>
+                <settings translate="title">
+					<title>Social Networks</title>
+					<action>adminhtml/system_config/edit/section/social_networks</action>
+					<sort_order>10</sort_order>
+				</settings>
+            </children-->
+        </qiub>
+    </menu>
+	<acl>
+        <resources>
+            <admin>
+                <children>                
+                    <qiub translate="title" module="qspidertheme">
+                        <title>Top Level SpiderTheme Menu Item</title>
+                        <sort_order>999</sort_order>
+                    </qiub>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config> 

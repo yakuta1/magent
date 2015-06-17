@@ -1,0 +1,77 @@
+<?php
+$_product = $this->getProduct();
+$_helper = $this->helper('catalog/output');
+
+if($_product->getImage()):
+?>
+<div id="imageShowcase">
+
+    <span class="product-image-zoom" id="main-picture-wrapper">
+		<?php 
+		
+		$bigimg = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'catalog/product' . $_product->getImage();
+		//echo $bigimg;
+		//$imageCacheUrl = Mage::helper('catalog/image')->init($product, 'image')->resize(135,135);
+		
+		if ($_product->getImage() != 'no_selection' && $_product->getImage()):
+			echo '<img class="prodmainimage" src="'.$this->helper('catalog/image')->init($_product, 'image')->resize(340, 500).'" alt="'.$this->htmlEscape($this->getImageLabel()).'" title="'.$this->htmlEscape($this->getImageLabel()).'" />';
+			echo $_helper->productAttribute($_product, $_img, 'image');
+		else: 
+			echo '<img class="prodmainimage" src="'.$this->helper('catalog/image')->init($_product, 'image')->resize(340, 500).'" alt="'.$this->htmlEscape($this->getImageLabel()).'" title="'.$this->htmlEscape($this->getImageLabel()).'" />';
+		endif;
+        ?>
+    </span>
+    <span id="roll_on">Roll on to zoom in</span>
+</div>
+
+<?php if (count($this->getGalleryImages()) > 0): ?>
+
+    <div class="more-views">
+        <ul>
+            <?php foreach ($this->getGalleryImages() as $_image):
+
+               // $moreImg = ExtractImageName($this->helper('catalog/image')->init($this->getProduct(), 'image', $_image->getFile()));
+
+                ?>
+                <li>
+                	<img class="thumbmage" src="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'thumbnail', $_image->getFile())->resize(100, 145); ?>" alt="<?php echo $this->htmlEscape($_image->getLabel()) ?>" rel="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'thumbnail', $_image->getFile())->resize(340, 500) ?>"
+                    title="<?php echo $this->htmlEscape($_image->getLabel()) ?>" data-src="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'thumbnail', $_image->getFile()) ?>" />
+                </li>
+
+            <?php endforeach; ?>
+        </ul>
+    </div>
+
+<?php endif; ?>
+
+<?php
+/*
+
+function ExtractImageName($fullImagePath)
+{
+    $img_extract = explode("/", $fullImagePath);
+    $img_Len = count($img_extract);
+    $fullImgName = $img_extract[$img_Len - 1]; // Image name from full path
+    $fullImgName_extract = explode(".", $fullImgName);
+    $ImgName = $fullImgName_extract[0];
+    return $ImgName;
+}
+*/
+?>
+<script type="text/javascript">
+	//jQuery.noConflict();
+    jQuery(document).ready(function () {
+		//alert('asdasd');
+        jQuery('#main-picture-wrapper').zoom({url: '<?php echo $bigimg ?>'});
+		jQuery('img.thumbmage').click(function() {
+			event.preventDefault();
+            jQuery( ".zoomImg" ).remove();
+			var src = jQuery( this ).attr('rel');
+			jQuery('.prodmainimage').attr('src', src);
+			var bigimg = jQuery( this ).attr('data-src');
+			jQuery('#main-picture-wrapper').zoom({url: bigimg});
+		});
+    });
+
+</script>
+<?php endif; ?>

@@ -1,0 +1,498 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <sections>
+        <slideshow translate="label" module="slideshow">
+            <label>Homepage Slideshow Settings</label>
+			<class>slideshow-section</class>
+            <tab>qiubthemeconfig</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>200</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+			<groups>
+                <general translate="label">
+                    <label>General</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+						<enable translate="label comment">
+							<label>Enable</label>
+							<frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>							
+							<sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+						</enable>
+						<mode translate="label comment">
+                            <label>Mode</label>
+							<comment>Type of transition between slides</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>slideshow/source_mode</source_model>							
+							<sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </mode>
+						<speed translate="label comment">
+                            <label>Speed</label>
+                            <comment>Slide transition duration (in ms) / default: 500</comment>
+                            <frontend_type>text</frontend_type>
+                            <validate>required-entry validate-number</validate>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </speed>
+						<slide_margin translate="label comment">
+                            <label>Slide Margin</label>
+                            <comment>Margin between each slide / default: 0</comment>
+                            <frontend_type>text</frontend_type>
+                            <validate>required-entry validate-number</validate>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </slide_margin>
+						<start_slide translate="label comment">
+                            <label>Start Slide</label>
+                            <comment>Starting slide index (zero-based) / default: 0</comment>
+                            <frontend_type>text</frontend_type>
+                            <validate>required-entry validate-number</validate>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </start_slide>
+						<random_start translate="label comment">
+							<label>Random Start</label>
+							<comment>Start slider on a random slide / default: false</comment>
+							<frontend_type>select</frontend_type>
+                            <source_model>slideshow/source_trueFalse</source_model>							
+							<sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+						</random_start>
+						<slide_selector translate="label comment">
+                            <label>Slide Selector</label>
+                            <comment>Element to use as slides (ex. 'div.slide') / default: ''</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>7</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </slide_selector>
+						<infinite_loop translate="label comment">
+							<label>Infinite Loop</label>
+							<comment>If true, clicking "Next" while on the last slide will transition to the first slide and vice-versa / default: true</comment>
+							<frontend_type>select</frontend_type>
+                            <source_model>slideshow/source_trueFalse</source_model>							
+							<sort_order>8</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+						</infinite_loop>
+						<hide_control_onend translate="label comment">
+							<label>Hide Control On End</label>
+							<comment>If true, "Next" control will be hidden on last slide and vice-versa. Note: Only used when infiniteLoop: false / default: false</comment>
+							<frontend_type>select</frontend_type>
+                            <source_model>slideshow/source_trueFalse</source_model>							
+							<sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+						</hide_control_onend>
+						<easing translate="label comment">
+							<label>Easing</label>
+							<frontend_type>select</frontend_type>
+                            <source_model>slideshow/source_easing</source_model>							
+							<sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+						</easing>
+						<captions translate="label comment">
+							<label>Captions</label>
+                            <comment>Include image captions. Captions are derived from the image's title attribute / default: false</comment>
+							<frontend_type>select</frontend_type>
+                            <source_model>slideshow/source_trueFalse</source_model>							
+							<sort_order>11</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+						</captions>
+						<ticker translate="label comment">
+							<label>Ticker</label>
+							<comment>Use slider in ticker mode (similar to a news ticker) / default: false</comment>
+							<frontend_type>select</frontend_type>
+                            <source_model>slideshow/source_trueFalse</source_model>							
+							<sort_order>12</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+						</ticker>
+						<ticker_hover translate="label comment">
+							<label>Ticker Hover</label>
+							<comment>Ticker will pause when mouse hovers over slider. Note: this functionality does NOT work if using CSS transitions! / default: false</comment>
+							<frontend_type>select</frontend_type>
+                            <source_model>slideshow/source_trueFalse</source_model>							
+							<sort_order>13</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+						</ticker_hover>
+						<adaptive_height translate="label comment">
+							<label>Adaptive Height</label>
+							<comment>Dynamically adjust slider height based on each slide's height / default: false</comment>
+							<frontend_type>select</frontend_type>
+                            <source_model>slideshow/source_trueFalse</source_model>							
+							<sort_order>14</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+						</adaptive_height>
+						<adaptive_heigh_speed translate="label comment">
+							<label>Adaptive Heigh Speed</label>
+							<comment>Slide height transition duration (in ms). Note: only used if adaptiveHeight: true / default: 500</comment>
+							<frontend_type>text</frontend_type>
+							<validate>required-entry validate-number</validate>
+							<sort_order>15</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+						</adaptive_heigh_speed>
+						<video translate="label comment">
+							<label>Video</label>
+							<comment>If any slides contain video, set this to true / default: false</comment>
+							<frontend_type>select</frontend_type>
+                            <source_model>slideshow/source_trueFalse</source_model>							
+							<sort_order>16</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+						</video>
+						<responsive translate="label comment">
+							<label>Responsive</label>
+							<comment>Enable or disable auto resize of the slider. Useful if you need to use fixed width sliders. / default: true</comment>
+							<frontend_type>select</frontend_type>
+                            <source_model>slideshow/source_trueFalse</source_model>							
+							<sort_order>17</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+						</responsive>
+						<use_css translate="label comment">
+							<label>Use CSS</label>
+							<comment>If true, CSS transitions will be used for horizontal and vertical slide animations (this uses native hardware acceleration). If false, jQuery animate() will be used. / default: true</comment>
+							<frontend_type>select</frontend_type>
+                            <source_model>slideshow/source_trueFalse</source_model>							
+							<sort_order>18</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+						</use_css>
+						<preload_images translate="label comment">
+							<label>Preload Images</label>
+							<comment>If 'all', preloads all images before starting the slider. If 'visible', preloads only images in the initially visible slides before starting the slider (tip: use 'visible' if all slides are identical dimensions) / default: 'visible'</comment>
+							<frontend_type>select</frontend_type>
+                            <source_model>slideshow/source_preloadImages</source_model>							
+							<sort_order>19</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+						</preload_images>
+						<touch_enabled translate="label comment">
+							<label>Touch Enabled</label>
+							<comment>If true, slider will allow touch swipe transitions / default: true</comment>
+							<frontend_type>select</frontend_type>
+                            <source_model>slideshow/source_trueFalse</source_model>							
+							<sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+						</touch_enabled>
+						<swipe_threshold translate="label comment">
+							<label>Swipe Threshold</label>
+							<comment>Amount of pixels a touch swipe needs to exceed in order to execute a slide transition. Note: only used if touchEnabled: true / default: 50</comment>
+							<frontend_type>text</frontend_type>
+							<validate>required-entry validate-number</validate>
+							<sort_order>21</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+						</swipe_threshold>
+						<one_to_one_touch translate="label comment">
+							<label>One To One Touch</label>
+							<comment>If true, non-fade slides follow the finger as it swipes / default: true</comment>
+							<frontend_type>select</frontend_type>
+                            <source_model>slideshow/source_trueFalse</source_model>							
+							<sort_order>22</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+						</one_to_one_touch>
+						<prevent_default_swipe_x translate="label comment">
+							<label>Prevent Default Swipe X</label>
+							<comment>If true, touch screen will not move along the x-axis as the finger swipes / default: true</comment>
+							<frontend_type>select</frontend_type>
+                            <source_model>slideshow/source_trueFalse</source_model>							
+							<sort_order>23</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+						</prevent_default_swipe_x>
+						<prevent_default_swipe_y translate="label comment">
+							<label>Prevent Default Swipe Y</label>
+							<comment>If true, touch screen will not move along the y-axis as the finger swipes / default: false</comment>
+							<frontend_type>select</frontend_type>
+                            <source_model>slideshow/source_trueFalse</source_model>							
+							<sort_order>24</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+						</prevent_default_swipe_y>
+                    </fields>
+                </general>
+                <pager translate="label">
+                    <label>Pager</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>2</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+						<pager translate="label comment">
+							<label>Pager</label>
+							<comment>If true, a pager will be added / default: true</comment>
+							<frontend_type>select</frontend_type>
+                            <source_model>slideshow/source_trueFalse</source_model>							
+							<sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+						</pager>
+						<pager_type translate="label comment">
+							<label>Pager Type</label>
+							<comment>If 'full', a pager link will be generated for each slide. If 'short', a x / y pager will be used (ex. 1 / 5) / default: 'full'</comment>
+							<frontend_type>select</frontend_type>
+                            <source_model>slideshow/source_pagerType</source_model>							
+							<sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+						</pager_type>
+						<pager_selector translate="label comment">
+							<label>Pager Selector</label>
+							<comment>Element used to populate the populate the pager. By default, the pager is appended to the bx-viewport / default: ''</comment>
+							<frontend_type>text</frontend_type>
+							<sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+						</pager_selector>
+						<pager_custom translate="label comment">
+							<label>Pager Custom</label>
+							<comment>Parent element to be used as the pager. Parent element must contain a 'data-slide-index="x"' element for each slide. Not for use with dynamic carousels. / default: ''</comment>
+							<frontend_type>text</frontend_type>
+							<sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+						</pager_custom>
+						<build_pager translate="label comment">
+							<label>Build Pager</label>
+							<comment>If supplied, function is called on every slide element, and the returned value is used as the pager item markup / default: ''</comment>
+							<frontend_type>text</frontend_type>
+							<sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+						</build_pager>
+					</fields>
+                </pager>
+                <controls translate="label">
+                    <label>Controls</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>3</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+						<controls translate="label comment">
+							<label>Controls</label>
+							<comment>If true, "Next" / "Prev" controls will be added / default: true</comment>
+							<frontend_type>select</frontend_type>
+                            <source_model>slideshow/source_trueFalse</source_model>							
+							<sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+						</controls>
+						<next_text translate="label comment">
+							<label>Next Text</label>
+							<comment>Text to be used for the "Next" control / default: 'Next'</comment>
+							<frontend_type>text</frontend_type>
+							<validate>required-entry</validate>
+							<sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+						</next_text>
+						<prev_text translate="label comment">
+							<label>Prev Text</label>
+							<comment>Text to be used for the "Prev" control / default: 'Prev'</comment>
+							<frontend_type>text</frontend_type>
+							<validate>required-entry</validate>
+							<sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+						</prev_text>
+						<next_selector translate="label comment">
+							<label>Next Selector</label>
+							<comment>Element used to populate the "Next" control / default: ''</comment>
+							<frontend_type>text</frontend_type>
+							<sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+						</next_selector>
+						<prev_selector translate="label comment">
+							<label>Prev Selector</label>
+							<comment>Element used to populate the "Prev" control / default: ''</comment>
+							<frontend_type>text</frontend_type>
+							<sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+						</prev_selector>
+						<auto_controls translate="label comment">
+							<label>Auto Controls</label>
+							<comment>If true, "Start/Stop" controls will be added / default: false</comment>
+							<frontend_type>select</frontend_type>
+                            <source_model>slideshow/source_trueFalse</source_model>							
+							<sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+						</auto_controls>
+						<start_text translate="label comment">
+							<label>Start Text</label>
+							<comment>Text to be used for the "Start" control / default: 'Start'</comment>
+							<frontend_type>text</frontend_type>
+							<validate>required-entry</validate>
+							<sort_order>7</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+						</start_text>
+						<stop_text translate="label comment">
+							<label>Stop Text</label>
+							<comment>Text to be used for the "Stop" control / default: 'Stop'</comment>
+							<frontend_type>text</frontend_type>
+							<validate>required-entry</validate>
+							<sort_order>8</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+						</stop_text>
+						<auto_controls_combine translate="label comment">
+							<label>Auto Controls Combine</label>
+							<comment>When slideshow is playing only "Stop" control is displayed and vice-versa / default: false</comment>
+							<frontend_type>select</frontend_type>
+                            <source_model>slideshow/source_trueFalse</source_model>							
+							<sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+						</auto_controls_combine>
+						<auto_controls_selector translate="label comment">
+							<label>Auto Controls Selector</label>
+							<comment>Element used to populate the auto controls / default: ''</comment>
+							<frontend_type>text</frontend_type>
+							<sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+						</auto_controls_selector>
+					</fields>
+                </controls>
+				<auto translate="label">
+                    <label>Auto</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>4</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+						<auto translate="label comment">
+							<label>Auto</label>
+							<comment>Slides will automatically transition / default: false</comment>
+							<frontend_type>select</frontend_type>
+                            <source_model>slideshow/source_trueFalse</source_model>							
+							<sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+						</auto>
+						<pause translate="label comment">
+							<label>Pause</label>
+							<comment>The amount of time (in ms) between each auto transition / default: 4000</comment>
+							<frontend_type>text</frontend_type>
+							<validate>required-entry validate-number</validate>
+							<sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+						</pause>
+						<auto_start translate="label comment">
+							<label>Auto Start</label>
+							<comment>Auto show starts playing on load. If false, slideshow will start when the "Start" control is clicked / default: true</comment>
+							<frontend_type>select</frontend_type>
+                            <source_model>slideshow/source_trueFalse</source_model>							
+							<sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+						</auto_start>
+						<auto_direction translate="label comment">
+							<label>Auto Direction</label>
+							<comment>The direction of auto show slide transitions / default: 'next'</comment>
+							<frontend_type>select</frontend_type>
+                            <source_model>slideshow/source_autoDirection</source_model>
+							<sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+						</auto_direction>
+						<auto_hover translate="label comment">
+							<label>Auto Hover</label>
+							<comment>Auto show will pause when mouse hovers over slider / default: false</comment>
+							<frontend_type>select</frontend_type>
+                            <source_model>slideshow/source_trueFalse</source_model>							
+							<sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+						</auto_hover>
+						<auto_delay translate="label comment">
+							<label>Auto Delay</label>
+							<comment>Time (in ms) auto show should wait before starting / default: 0</comment>
+							<frontend_type>text</frontend_type>
+							<validate>required-entry validate-number</validate>
+							<sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+						</auto_delay>
+					</fields>
+                </auto>
+			</groups>
+		</slideshow>
+	</sections>
+</config>

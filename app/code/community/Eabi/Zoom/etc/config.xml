@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+    @category Eabi
+    @package Eabi_Zoom
+    @author Aktsiamaailm OU
+    @licence http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+
+*/
+-->
+
+
+<config>
+    <modules>
+        <Eabi_Zoom>
+            <version>0.1.2</version>
+        </Eabi_Zoom>
+    </modules>
+    
+    
+    
+    <global>
+        <models>
+            <eabi_zoom>
+                <class>Eabi_Zoom_Model</class>
+            </eabi_zoom>
+        </models>
+        <blocks>
+            <eabi_zoom>
+                <class>Eabi_Zoom_Block</class>
+            </eabi_zoom>
+        </blocks>
+        <resources>
+            <eabi_zoom_setup>
+                <setup>
+                    <module>Eabi_Zoom</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </eabi_zoom_setup>
+            <eabi_zoom_write>
+                <setup>
+                    <module>Eabi_Zoom</module>
+                </setup>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </eabi_zoom_write>
+            <eabi_zoom_read>
+                <setup>
+                    <module>Eabi_Zoom</module>
+                </setup>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </eabi_zoom_read>
+        </resources>
+        <helpers>
+            <eabi_zoom>
+                <class>Eabi_Zoom_Helper</class>
+            </eabi_zoom>
+        </helpers>
+        <translate>
+            <modules>
+                <eabi_zoom>
+                    <files>
+                        <default>Eabi_Zoom.csv</default>
+                    </files>
+                </eabi_zoom>
+            </modules>
+        </translate>
+    </global>
+
+    <frontend>
+        <layout>
+            <updates>
+                <eabi_zoom module="Eabi_Zoom">
+                    <file>eabi_zoom.xml</file>
+                </eabi_zoom>
+            </updates>
+        </layout>
+        <translate>
+            <modules>
+                <eabi_zoom>
+                    <files>
+                        <default>Eabi_Zoom.csv</default>
+                    </files>
+                </eabi_zoom>
+            </modules>
+        </translate>
+    </frontend>
+    
+    <adminhtml>
+        <translate>
+            <modules>
+                <eabi_zoom>
+                    <files>
+                        <default>Eabi_Zoom.csv</default>
+                    </files>
+                </eabi_zoom>
+            </modules>
+        </translate>
+        <acl>
+            <resources>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <eabi_zoom translate="title">
+                                            <title>E-Abi Bezoom plugin</title>
+                                            <sort_order>50</sort_order>
+                                        </eabi_zoom>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+
+    </adminhtml>
+    
+    <default>
+        <eabi_zoom>
+            <eabi_zoom>
+                <enabled>1</enabled>
+                <mainImageSize>265_265</mainImageSize>
+                <additionalImageSize>60_60</additionalImageSize>
+                <zoomImageSize>500_500</zoomImageSize>
+                <zoomHideTitle>0</zoomHideTitle>
+                <zoomTitleSize>0.8 em</zoomTitleSize>
+                <zoomTitleColor>#ffffff</zoomTitleColor>
+                <zoomTitleBackground>#5398EE</zoomTitleBackground>
+                <zoomTitleMarginLeft>10</zoomTitleMarginLeft>
+                <zoomTitleMarginTop>0</zoomTitleMarginTop>
+                <zoomImageBorder>#333333</zoomImageBorder>
+                <zoomImageBackground>#ffffff</zoomImageBackground>
+                <zoomEventType>click</zoomEventType>
+            </eabi_zoom>
+        </eabi_zoom>
+    </default>
+</config>

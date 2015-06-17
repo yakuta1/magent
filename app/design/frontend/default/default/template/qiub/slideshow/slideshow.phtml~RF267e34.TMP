@@ -1,0 +1,141 @@
+<?php if(Mage::getStoreConfig("slideshow/general/enable")): ?>
+
+    
+	<?php
+        $now = Mage::getModel('core/date')->timestamp(time());
+        $dateStart = date('Y-m-d' . ' 00:00:00', $now);
+        $dateEnd = date('Y-m-d' . ' 23:59:00', $now); 
+        
+        $slides = Mage::getModel('slideshow/slides')
+        ->getCollection()
+        ->addFieldToFilter('filename', array('neq' => ''))
+        ->addFieldToFilter('status', array('eq' => '1'))
+        ->addFieldToFilter('start_date', 
+				 array(
+					 array('to' => Mage::getModel('core/date')->gmtDate()),
+					 array('start_date', 'null'=>'')
+					 )
+		)
+	   	->addFieldToFilter('end_date',
+				 array(
+					 array('gteq' => Mage::getModel('core/date')->gmtDate()),
+					 array('end_date', 'null'=>'')
+					 )
+		)		
+		->setOrder("sort_order","ASC");	
+		//var_dump($slides->getSelectSql(true));
+		
+        ?>
+    <?php if(count($slides) > 0): $titles = array(); ?>
+    <div class="bx-slider-wrapper">
+        <ul class="bxslider">
+        <?php 
+			foreach ($slides as $item): 	
+				$titles[] = $item->getTitle(); 
+				$url = $item->getSlideUrl(); 
+		?>
+            <li class="slide<?php echo $item->getId() ?>">
+            	<?php if(!empty($url)): ?><a class="link-slide" href="<?php echo $url ?>"><?php endif; ?>
+                    <img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).$item->getFilename() ?>" />
+                    <?php if(!empty($url)): ?></a><?php endif; ?>
+                    <?php if($item->getSlideContent()): ?>
+                    <div class="content-slide">
+                        <?php 
+                        $content = $item->getSlideContent();
+                        $url = $item->getSlideUrl();
+                        echo !empty($content) ? sprintf('<p>%s</p>', $content) : '';
+                        ?>
+                    </div>
+                <?php endif; ?>
+            </li>
+        <?php endforeach;?>
+        </ul>
+        <!--div id="bx-pager">
+        <?php //foreach($titles as $key => $title): ?>
+            <a data-slide-index="<?php //echo $key ?>" href=""><?php //echo $title; ?></a>
+        <?php //endforeach;?>       
+        </div-->
+    </div>
+    <?php endif; ?>
+    
+    <script type="text/javascript">
+    jQuery.noConflict();
+    jQuery(document).ready(function(){
+		jQuery('.carousel').bxSlider({
+			slideWidth: 225,
+			minSlides: 1,
+			maxSlides: 4,
+			moveSlides: 4,
+			slideMargin: 10,
+			pager: false
+		});
+        jQuery('.bxslider').bxSlider({
+			/*
+			mode : 'fade',
+		  	pagerCustom : '#bx-pager',
+			useCSS: false,
+			infiniteLoop: false,
+			hideControlOnEnd: true,
+			easing: 'easeOutElastic',
+			speed: 2000
+			*/
+			mode: '<?php echo Mage::getStoreConfig("slideshow/general/mode"); ?>',
+            speed: <?php echo Mage::getStoreConfig("slideshow/general/speed"); ?>,
+            slideMargin: <?php echo Mage::getStoreConfig("slideshow/general/slide_margin"); ?>,
+            startSlide: <?php echo Mage::getStoreConfig("slideshow/general/start_slide"); ?>,
+            randomStart: <?php echo Mage::getStoreConfig("slideshow/general/random_start"); ?>,
+            slideSelector: '<?php echo Mage::getStoreConfig("slideshow/general/slide_selector"); ?>',
+            infiniteLoop: <?php echo Mage::getStoreConfig("slideshow/general/infinite_loop"); ?>,
+            hideControlOnEnd: <?php echo Mage::getStoreConfig("slideshow/general/hide_control_onend"); ?>,
+            easing: '<?php echo Mage::getStoreConfig("slideshow/general/easing"); ?>',
+            captions: <?php echo Mage::getStoreConfig("slideshow/general/captions"); ?>,
+            ticker: <?php echo Mage::getStoreConfig("slideshow/general/ticker"); ?>,
+            tickerHover: <?php echo Mage::getStoreConfig("slideshow/general/ticker_hover"); ?>,
+            adaptiveHeight: <?php echo Mage::getStoreConfig("slideshow/general/adaptive_height"); ?>,
+            adaptiveHeightSpeed: <?php echo Mage::getStoreConfig("slideshow/general/adaptive_heigh_speed"); ?>,
+            video: <?php echo Mage::getStoreConfig("slideshow/general/video"); ?>,
+            responsive: <?php echo Mage::getStoreConfig("slideshow/general/responsive"); ?>,
+            useCSS: <?php echo Mage::getStoreConfig("slideshow/general/use_css"); ?>,
+            preloadImages: '<?php echo Mage::getStoreConfig("slideshow/general/preloadImages"); ?>',
+            touchEnabled: <?php echo Mage::getStoreConfig("slideshow/general/touch_enabled"); ?>,
+            swipeThreshold: <?php echo Mage::getStoreConfig("slideshow/general/swipe_threshold"); ?>,
+            oneToOneTouch: <?php echo Mage::getStoreConfig("slideshow/general/one_to_one_touch"); ?>,
+            preventDefaultSwipeX: <?php echo Mage::getStoreConfig("slideshow/general/prevent_default_swipe_x"); ?>,
+            preventDefaultSwipeY: <?php echo Mage::getStoreConfig("slideshow/general/prevent_default_swipe_y"); ?>,
+            
+			pager: <?php echo Mage::getStoreConfig("slideshow/pager/pager"); ?>,
+            pagerType: '<?php echo Mage::getStoreConfig("slideshow/pager/pager_type"); ?>',
+            pagerShortSeparator: '<?php echo Mage::getStoreConfig("slideshow/pager/pager_short_separator"); ?>',
+            pagerSelector: '<?php echo Mage::getStoreConfig("slideshow/pager/pagerSelector"); ?>',
+            //pagerCustom: <?php echo Mage::getStoreConfig("slideshow/pager/pager_custom") == '' ? 'null' : sprintf("'%s'", Mage::getStoreConfig("slideshow/pager/pager_custom")); ?>,
+            buildPager: function(slideIndex){
+				switch(slideIndex){
+					<?php foreach($titles as $key => $title): ?>
+					case <?php echo $key ?>:
+						return '<?php echo $title; ?>';
+					<?php endforeach;?> 
+				}
+			},
+			
+            controls: <?php echo Mage::getStoreConfig("slideshow/controls/controls"); ?>,
+            nextText: '<?php echo Mage::getStoreConfig("slideshow/controls/next_text"); ?>',
+            prevText: '<?php echo Mage::getStoreConfig("slideshow/controls/prev_text"); ?>',
+            nextSelector: <?php echo Mage::getStoreConfig("slideshow/controls/next_selector") == '' ? 'null' : sprintf("'%s'", Mage::getStoreConfig("slideshow/controls/next_selector")); ?>,
+            prevSelector: <?php echo Mage::getStoreConfig("slideshow/controls/prev_selector") == '' ? 'null' : sprintf("'%s'", Mage::getStoreConfig("slideshow/controls/prev_selector")); ?>,
+            autoControls: <?php echo Mage::getStoreConfig("slideshow/controls/auto_controls"); ?>,
+            startText: '<?php echo Mage::getStoreConfig("slideshow/controls/start_text"); ?>',
+            stopText: '<?php echo Mage::getStoreConfig("slideshow/controls/stop_text"); ?>',
+            autoControlsCombine: <?php echo Mage::getStoreConfig("slideshow/controls/auto_controls_combine"); ?>,
+            autoControlsSelector: <?php echo Mage::getStoreConfig("slideshow/controls/auto_controls_selector") == '' ? 'null' : sprintf("'%s'", Mage::getStoreConfig("slideshow/controls/auto_controls_selector")); ?>,
+            
+			auto: <?php echo Mage::getStoreConfig("slideshow/auto/auto"); ?>,
+            pause: <?php echo Mage::getStoreConfig("slideshow/auto/pause"); ?>,
+            autoStart: <?php echo Mage::getStoreConfig("slideshow/auto/auto_start"); ?>,
+            autoDirection: '<?php echo Mage::getStoreConfig("slideshow/auto/auto_direction"); ?>',
+            autoHover: <?php echo Mage::getStoreConfig("slideshow/auto/auto_hover"); ?>,
+            autoDelay: <?php echo Mage::getStoreConfig("slideshow/auto/auto_delay"); ?>,
+        });
+    });
+    
+    </script>
+<?php endif; ?>

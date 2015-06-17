@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Qiub_Slideshow>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Qiub_Slideshow>
+    </modules>
+</config> 

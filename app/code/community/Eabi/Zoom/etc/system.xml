@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+    @category Eabi
+    @package Eabi_Zoom
+    @author Aktsiamaailm OU
+    @licence http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+
+*/
+-->
+
+
+<config>
+    <tabs>
+        <eabi translate="label">
+            <label>Eabi Moodulid</label>
+            <sort_order>300</sort_order>
+        </eabi>
+    </tabs>
+    <sections>
+        <eabi_zoom translate="label" module="eabi_zoom">
+            <label>Bezoom plugin from E-Abi</label>
+            <tab>eabi</tab>
+            <sort_order>340</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <eabi_zoom translate="label" module="eabi_zoom">
+                    <label>Bezoom plugin from E-Abi</label>
+                    <tab>eabi</tab>
+                    <sort_order>340</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <comment><![CDATA[    
+                            <a href="http://www.e-abi.ee" target="_blank"><IMG border="0" src="http://www.e-abi.ee/skin/frontend/default/electronics3/images/logo-web.png"></a>
+                            <div style="margin-top:4px;margin-bottom:4px; color:gray;"></div>
+                            <div style="margin-top:4px;"><b>Aktsiamaailm OÜ, <a href="mailto:info@e-abi.ee">info@e-abi.ee</a>, <a href="http://en.e-abi.ee/">http://en.e-abi.ee/</a>, <a href="http://www.e-abi.ee/">http://www.e-abi.ee/</a></b></div>                                                 
+                            <script type="text/javascript">
+                                document.observe('dom:loaded', function() {
+
+                                if (!$('fb-root')) {
+                                    var eabi_interface_locale = $('interface_locale').getValue();
+                                    if (!eabi_interface_locale) {
+                                        eabi_interface_locale = 'en_US';
+                                    }
+                                    $$('body').first().insert('<div id="fb-root"></div>', { position: 'top'});
+                                    (function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/" + eabi_interface_locale + "/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+                                }
+                                var eabi_interface_site = 'en';
+                                if (eabi_interface_locale == 'et_EE') {
+                                    eabi_interface_site = 'www';
+                                }
+                                $('eabi_attributeadder_configurator').update('<fb:like href="http://' + eabi_interface_site +'.e-abi.ee/" send="true" width="450" show_faces="false" action="recommend"></fb:like>');
+                                });
+                            </script>
+                                
+                                
+                            <div id="eabi_attributeadder_configurator" style="">
+                            
+                            
+                            </div>
+                            <hr /><br />                                                        
+
+                            ]]>
+                    </comment>                                                            
+                    <fields>
+                        <enabled translate="label">
+                            <label>Enabled</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enabled>
+                        <mainImageSize translate="label comment">
+                            <label>Size of main image</label>
+                            <comment>Size in pixels width_height. (Default 265_265).</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </mainImageSize>
+                        <additionalImageSize translate="label comment">
+                            <label>Size of additional images</label>
+                            <comment>Size in pixels width_height. (Default 60_60)</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </additionalImageSize>
+                        <zoomImageSize translate="label comment">
+                            <label>Size of Zoombox image</label>
+                            <comment>Size in pixels width_height. (Default 500_500)</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>15</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </zoomImageSize>
+                        
+                        <zoomHideTitle translate="label">
+                            <label>Hide title from Zoombox</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </zoomHideTitle>
+                        <zoomTitleSize translate="label">
+                            <label>Size of Zoombox image title (CSS)</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>25</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </zoomTitleSize>
+                        <zoomTitleColor translate="label">
+                            <label>Color of Zoombox image title (CSS)</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </zoomTitleColor>
+                        <zoomTitleBackground translate="label">
+                            <label>Color of Zoombox image title background (CSS)</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>35</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </zoomTitleBackground>
+                        <zoomImageBackground translate="label">
+                            <label>Color of Zoombox image background (CSS)</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>36</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </zoomImageBackground>
+                        <zoomImageBorder translate="label">
+                            <label>Color of Zoombox border (CSS)</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>37</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </zoomImageBorder>
+                        <zoomTitleMarginLeft translate="label comment">
+                            <label>Left Margin for the Zoombox</label>
+                            <comment>in pixels</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </zoomTitleMarginLeft>
+                        <zoomTitleMarginTop translate="label comment">
+                            <label>Top Margin for the Zoombox</label>
+                            <comment>in pixels</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>55</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </zoomTitleMarginTop>
+                        <zoomForceTop translate="label comment">
+                            <label>Force top position for Zoom window</label>
+                            <comment>in pixels, use only when browser detection does not work</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>56</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </zoomForceTop>
+                        <zoomEventType translate="label comment">
+                            <label>Zoombox activates from the following event</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>eabi_zoom/source_event</source_model>
+                            <sort_order>57</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </zoomEventType>
+                        
+                    </fields>
+                    
+                </eabi_zoom>
+            </groups>
+        </eabi_zoom>
+    </sections>
+    
+</config>

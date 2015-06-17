@@ -1,0 +1,163 @@
+<?php
+/**
+ * E-Abi (Aktsiamaailm LLC)
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to info@e-abi.ee so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this module to newer
+ * versions in the future.
+ *
+ * @category   Eabi
+ * @package    Eabi_Zoom
+ * @copyright  Copyright (c) 2012 Aktsiamaailm LLC (http://en.e-abi.ee/)
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ * @author     Matis Halmann <info@e-abi.ee>
+ * 
+ */
+?><?php
+$_product = $this->getProduct();
+
+$_zoomConfig = Mage::getStoreConfig('eabi_zoom/eabi_zoom');
+
+$zoomHideTitle = (isset($_zoomConfig['zoomHideTitle']) && $_zoomConfig['zoomHideTitle'] == '1') ? 'true' : 'false';
+$zoomForceTop = (isset($_zoomConfig['zoomForceTop'])) ? $_zoomConfig['zoomForceTop'] : false;
+
+if ($zoomForceTop !== false && trim($zoomForceTop) !== '') {
+    $zoomForceTop = (int)$zoomForceTop;
+} else {
+    $zoomForceTop = 'false';
+}
+
+$zoomTitleSize = (isset($_zoomConfig['zoomTitleSize'])) ? $_zoomConfig['zoomTitleSize'] : '0.8 em';
+
+if (is_numeric($zoomTitleSize)) {
+    $zoomTitleSize .= 'px';
+}
+
+$zoomTitleColor = (isset($_zoomConfig['zoomTitleColor'])) ? $_zoomConfig['zoomTitleColor'] : '#ffffff';
+
+$zoomTitleBackground = (isset($_zoomConfig['zoomTitleBackground'])) ? $_zoomConfig['zoomTitleBackground'] : '#5398EE';
+$zoomImageBackground = (isset($_zoomConfig['zoomImageBackground'])) ? $_zoomConfig['zoomImageBackground'] : '#000000';
+$zoomImageBorder = (isset($_zoomConfig['zoomImageBorder'])) ? $_zoomConfig['zoomImageBorder'] : '#333333';
+
+if (trim($zoomTitleColor) == '') {
+    $zoomTitleColor = '#ffffff';
+}
+
+if (trim($zoomTitleBackground) == '') {
+    $zoomTitleBackground = '#5398EE';
+}
+if (trim($zoomImageBackground) == '') {
+    $zoomImageBackground = '#ffffff';
+}
+if (trim($zoomImageBorder) == '') {
+    $zoomImageBorder = '#333333';
+}
+
+
+$zoomTitleMarginLeft = (isset($_zoomConfig['zoomTitleMarginLeft'])) ? (int)$_zoomConfig['zoomTitleMarginLeft'] : 10;
+$zoomTitleMarginTop = (isset($_zoomConfig['zoomTitleMarginTop'])) ? (int)$_zoomConfig['zoomTitleMarginTop'] : 0;
+
+$zoomEventType = (isset($_zoomConfig['zoomEventType']) && in_array($_zoomConfig['zoomEventType'], array('click', 'mouseover')))?$_zoomConfig['zoomEventType']:'click';
+
+
+/* Main Image Size */
+if (strstr($_zoomConfig['mainImageSize'], '_')) {
+    $mainImageSize = explode('_', $_zoomConfig['mainImageSize'], 2);
+} else {
+    $mainImageSize = array(265, 265);
+}
+/* Additional Images Size */
+if (strstr($_zoomConfig['additionalImageSize'], '_')) {
+    $additionalImageSize = explode('_', $_zoomConfig['additionalImageSize'], 2);
+} else {
+    $additionalImageSize = array(85, 100);
+}
+
+/* Zoombox Image Size */
+if (strstr($_zoomConfig['zoomImageSize'], '_')) {
+    $zoomImageSize = explode('_', $_zoomConfig['zoomImageSize'], 2);
+} else {
+    $zoomImageSize = array(500, 500);
+}
+?>
+
+
+    <a href="<?php echo $this->helper('catalog/image')->init($_product, 'image'); ?>" 
+       rel="eabi_bezoom" 
+       class="eabi_bezoom" 
+       title="<?php echo $this->htmlEscape($_product->getName()); ?>"
+       onclick="return false;"
+       id="eabi_bezoom_main"
+       ><img src="<?php echo $this->helper('catalog/image')->init($_product, 'image')->resize($mainImageSize[0], $mainImageSize[1])->backgroundColor(array(0,0,0)); ?>" alt="<?php echo $this->htmlEscape($_product->getImageLabel()); ?>"
+          /></a>
+    <?php if ($zoomEventType == 'click') :?>
+    <p class="a-center" id="track_hint"><?php echo $this->__('Click on the image to zoom') ?></p>
+    <?php endif; ?>
+
+
+
+<?php if (count($this->getGalleryImages()) > 0): ?>
+    <div class="more-views">
+       <div class="ebai_more_views"> <?php echo $this->__('More Views') ?></div>
+        <ul>
+            <?php foreach ($this->getGalleryImages() as $_image): ?>
+                <li>
+                    <a href="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'image', $_image->getFile()); ?>" 
+                       title="<?php echo $this->htmlEscape($_image->getLabel()) ?>"
+                       onclick="eabi_bezoom_change_image(this); return false;"
+                       rel="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'image', $_image->getFile())->resize($mainImageSize[0], $mainImageSize[1])->backgroundColor(array(0,0,0)); ?>"
+                       ><img src="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'thumbnail', $_image->getFile())->resize($additionalImageSize[0], $additionalImageSize[1])->backgroundColor(array(0,0,0)); ?>" alt="<?php echo $this->htmlEscape($_image->getLabel()) ?>"
+                          /></a>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+<?php endif; ?>
+
+<script type="text/javascript">
+    
+    var eabi_bezoom_options = {
+        height: <?php echo (int)$zoomImageSize[1]; ?>,
+        width: <?php echo (int)$zoomImageSize[0]; ?>,
+        marginLeft: <?php echo $zoomTitleMarginLeft; ?>,
+        marginTop: <?php echo $zoomTitleMarginTop; ?>,
+        bgColor: '<?php echo $zoomTitleBackground; ?>',
+        imgBgColor: '<?php echo $zoomImageBackground; ?>',
+        imgBorder: '<?php echo $zoomImageBorder; ?>',
+        color: '<?php echo $zoomTitleColor; ?>',
+        size: '<?php echo $zoomTitleSize; ?>',
+        hideTitle: <?php echo $zoomHideTitle; ?>,
+        forceTop: <?php echo $zoomForceTop; ?>,
+        eventType: '<?php echo $zoomEventType; ?>'
+    };
+    
+    var eabi_bezoom_change_image = function(node) {
+        var aNode = $('eabi_bezoom_main'),
+        imgNode = $('eabi_bezoom_main').select('img').first(),
+        img = $(node).select('img').first();
+        aNode.href = node.href;
+        aNode.title = node.title;
+        imgNode.src = node.rel;
+    }
+
+    if (Prototype.Browser.IE) {
+        Event.observe(window, 'load', function(){ //KB927917 fix
+                var el = new Eabi_Bezoom($$('.eabi_bezoom'), eabi_bezoom_options);
+        });
+    } else {
+        document.observe("dom:loaded", function(){
+                var el = new Eabi_Bezoom($$('.eabi_bezoom'), eabi_bezoom_options);
+        });
+    }
+</script>

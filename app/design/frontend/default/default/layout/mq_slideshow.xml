@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout version="0.1.0">
+    <cms_index_index>
+		<reference name="head">
+			<!--<action method="addJs"><script>jquery-1.11.0.min.js</script></action>-->
+			<action method="addCss"><stylesheet>qiub/slideshow/bxslider/jquery.bxslider.css</stylesheet></action>
+			<!--action method="addItem"><type>skin_js</type><name>qiub/slideshow/bxslider/jquery.min.js</name></action-->
+			<action method="addItem"><type>skin_js</type><name>qiub/slideshow/bxslider/plugins/jquery.easing.js</name></action>
+			<action method="addItem"><type>skin_js</type><name>qiub/slideshow/bxslider/plugins/jquery.fitvids.js</name></action>
+			<action method="addItem"><type>skin_js</type><name>qiub/slideshow/bxslider/jquery.bxslider.js</name></action>
+		</reference>
+        <reference name="topcontent">
+			<block type="slideshow/slideshow" template="qiub/slideshow/slideshow.phtml" before="-" />
+		</reference>
+    </cms_index_index>
+</layout>
